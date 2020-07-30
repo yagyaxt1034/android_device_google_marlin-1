@@ -26,10 +26,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
 PRODUCT_NAME := aosp_sailfish
 PRODUCT_DEVICE := sailfish
-PRODUCT_BRAND := Android
-PRODUCT_MODEL := AOSP on msm8996
-PRODUCT_MANUFACTURER := google
-PRODUCT_RESTRICT_VENDOR_FILES := true
+PRODUCT_BRAND := Google
+PRODUCT_MODEL := Pixel
+PRODUCT_MANUFACTURER := HTC
+PRODUCT_RESTRICT_VENDOR_FILES := false
 
 PRODUCT_COPY_FILES += device/google/marlin/fstab.aosp_common:root/fstab.sailfish
 
@@ -38,4 +38,9 @@ $(call inherit-product-if-exists, vendor/google_devices/marlin/device-vendor-sai
 
 PRODUCT_PACKAGES += \
     Launcher3
+
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRODUCT_NAME=sailfish \
+    BUILD_FINGERPRINT=google/marlin/sailfish:7.1.2/NJH47F/4146041:user/release-keys \
+    PRIVATE_BUILD_DESC="sailfish-user 7.1.2 NJH47F 4146041 release-keys"
 

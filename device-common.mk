@@ -18,16 +18,16 @@
 #
 # Everything in this directory will become public
 
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-    LOCAL_KERNEL := device/google/marlin-kernel/Image.gz-dtb
-else
-LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-endif
+# ifeq ($(TARGET_PREBUILT_KERNEL),)
+#     LOCAL_KERNEL := device/google/marlin-kernel/Image.gz-dtb
+# else
+# LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+# endif
 
 PRODUCT_SHIPPING_API_LEVEL := 24
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_KERNEL):kernel
+# PRODUCT_COPY_FILES += \
+#     $(LOCAL_KERNEL):kernel
 
 DEVICE_PACKAGE_OVERLAYS += device/google/marlin/overlay
 
@@ -469,3 +469,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Workaround for audio glitches
 PRODUCT_PROPERTY_OVERRIDES += \
     audio.adm.buffering.ms=3
+    
+# Add support for inline Open GApps building
+GAPPS_VARIANT := stock
+$(call inherit-product-if-exists, vendor/opengapps/build/opengapps-packages.mk)
+
+
+# Pixel Experience
+PRODUCT_COPY_FILES += \
+  device/google/marlin/nexus.xml:system/etc/sysconfig/nexus.xml
+
